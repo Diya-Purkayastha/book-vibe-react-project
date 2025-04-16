@@ -1,4 +1,6 @@
 import React from 'react';
+import { CiStar } from "react-icons/ci";
+import { Link } from 'react-router';
 
 const Book = ({book}) => {
 
@@ -6,7 +8,8 @@ const Book = ({book}) => {
    const{bookName, author, image, rating, category, tags} = book;
 
     return (
-        <div className="card bg-base-100 shadow-sm p-[24px]">
+        <Link to={`/bookDetails/${book.bookId}`}>
+            <div className="card bg-base-100 shadow-sm p-[24px]">
             <figure className='p-4 bg-[#F3F3F3] h-[230px]'>
                 <img className='w-[100px]'
                 src={image}
@@ -21,12 +24,18 @@ const Book = ({book}) => {
                 {bookName}
                 </h2>
                 <p>By: {author}</p>
-                <div className="card-actions justify-between">
-                <div className="badge badge-outline">{category}</div>
-                <div className="badge badge-outline">{rating}</div>
+               <div className='border-t border-dashed border-stone-300'>
+               <div className="card-actions justify-between mt-2 ">
+                <div className="badge badge-outline ">{category}</div>
+                <div className='flex items-center justify-center gap-1 '>
+                    <div className="badge badge-outline">{rating}</div>
+                    <span className='text-xl'><CiStar /></span>
+               </div>
                 </div>
+               </div>
             </div>
             </div>
+        </Link>
     );
 };
 
