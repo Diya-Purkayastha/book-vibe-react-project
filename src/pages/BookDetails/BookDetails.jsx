@@ -18,23 +18,27 @@ const BookDetails = () => {
 
     const handleMarkAsRead = id =>{
         addToStoreDB(id);
+        toast("Book added to the Read List");
+    }
 
-        // MySwal.fire({
-        //     title: "Good job!",
-        //     text: "You clicked read button!",
-        //     icon: "success"
-        //     });
-        
-            toast("Book added to the Read List");
+    const handleWishList = id =>{
+
+        MySwal.fire({
+            title: "Good job!",
+            text: "You added a book to wishlist!",
+            icon: "success"
+            });
+
+        addToStoreDB(id);
     }
 
     return (
         <div className='flex flex-col md:flex-row gap-5 w-3/4 mx-auto my-7'>
             <div className='bg-stone-200 rounded-xl flex justify-center items-center '>
-                <img className='md:p-15 h-[500px] ' src={image} alt="" />
+                <img className='md:p-15 p-5 h-[300px] md:h-[500px] ' src={image} alt="" />
             </div>
             <ToastContainer />
-            <div className='w-[50%] space-y-3'>
+            <div className='md:w-[50%] space-y-3'>
                 <h1 className='text-2xl font-semibold'>{bookName}</h1>
                 <p className='font-medium'>By:{author} </p>
                 <div className='border-y-1 border-dashed  p-1.5 border-stone-300'>
@@ -62,7 +66,7 @@ const BookDetails = () => {
                 </div>
                <div className='flex gap-2'>
                <button onClick={()=>handleMarkAsRead(id)} className="btn btn-outline btn-success">Read</button>
-               <button className="btn btn-active btn-info text-white">Wishlist</button>
+               <button className="btn btn-active btn-info text-white" onClick={()=> handleWishList(id)}>Wishlist</button>
                </div>
             </div>
           
